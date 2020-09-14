@@ -1,9 +1,9 @@
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState, useCallback, useEffect } from 'react';
 
-const Context = React.createContext();
+export const Context = React.createContext();
 
 export function DropdownProvider({ children }) {
-  const [options, setOptions] = useState();
+  const [options, setOptions] = useState([]);
   const [targetId, setTargetId] = useState(null);
   const [cachedId, setCachedId] = useState(null);
 

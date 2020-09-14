@@ -1,16 +1,16 @@
-import React, { useRef, useState, useContext, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useState, useContext, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
-import { useDimensions } from "./dimensions";
-import { Context } from "./Provider";
+import { useDimensions } from './dimensions';
+import { Context } from './Provider';
 
-let lastOption = 0;
+let lastOptionId = 0;
 
-export function DropdownOption({ name, content: Content, backgroundHeigth }) {
-  const idRef = useRef(++lastOption);
+export function DropdownOption({ name, content: Content, backgroundHeight }) {
+  const idRef = useRef(++lastOptionId);
   const id = idRef.current;
 
-  const [optionsHook, optionDimensions] = useDimensions();
+  const [optionHook, optionDimensions] = useDimensions();
   const [registered, setRegistered] = useState(false);
 
   const {
@@ -63,6 +63,8 @@ export function DropdownOption({ name, content: Content, backgroundHeigth }) {
     backgroundHeight,
   ]);
 
+  useEffect(() => deleteOptionById(id), [deleteOptionById, id]);
+
   const handleOpen = () => setTargetId(id);
   const handleClose = () => setTargetId(null);
   const handleTouch = () => (window.isMobile = true);
@@ -87,4 +89,4 @@ export function DropdownOption({ name, content: Content, backgroundHeigth }) {
       {name}
     </motion.button>
   );
-}
+} 
